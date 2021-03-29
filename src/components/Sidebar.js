@@ -4,7 +4,7 @@ import { colors } from "../design/variables";
 import iconArrow from '../images/icon-arrow-dark.svg'
 const Container = styled.div`
     background-color: white;
-    width: 90vw;
+    width: 80vw;
     min-height: 60vh;
     z-index: 1;
     margin: 0 auto;
@@ -44,6 +44,9 @@ const Container = styled.div`
                             transform: translate(0, -50%);
                             margin: 0 0 0 .5rem;
                         }
+                        :active{
+                            background-color: red;
+                        }
                 }
 
                 button{
@@ -59,6 +62,7 @@ const Container = styled.div`
                     color: ${colors.neutral.white};
                     font-weight: 600;
                     margin-top: .5rem;
+                    cursor: pointer;
                 }
         }
 
@@ -81,54 +85,50 @@ const SubMenu = styled.div`
 
 const Sidebar = () => {
 
-    const [subMenuClick, setSubMenuClick] = useState({
-        product: false,
-        company: false,
-        connect: true
-    });
+    const [productClick , setProductClick] = useState(false)
+    const [companyClick , setCompanyClick] = useState(false)
+    const [connectClick , setConnectClick] = useState(true)
 
-    const resetSubmenus = () => setSubMenuClick({product: false, company: false, connect: false,})
-    const subMenuClicked = e =>{
-        
-        switch (e.target.textContent.trim()){
-            case('Product'):
-            resetSubmenus()
-                setSubMenuClick({...subMenuClick, product:true})
-                break;
-            case('Company'):
-            resetSubmenus()
-                setSubMenuClick(...subMenuClick,{company:true})
-                break;
-            case('Connect'):
-            resetSubmenus()
-                setSubMenuClick(...subMenuClick,{connect:true})
-                break;
-            default:
-                break;
-        }
-
+    const resetStates = () =>{
+        setProductClick(false)
+        setCompanyClick(false)
+        setConnectClick(false)
     }
+
+    const subMenuClicked = e =>{
+
+        resetStates()
+
+        if (e.target.textContent.trim() === 'Product'){
+            setProductClick(true)
+        } else if (e.target.textContent.trim() === 'Company'){
+            setCompanyClick(true)
+        } else if (e.target.textContent.trim() === 'Connect'){
+            setConnectClick(true)
+    }
+}
+
     return ( 
         <Container>
             <ul>
                 <li onClick={subMenuClicked}>Product <span></span></li>
-                {subMenuClick.product
+                {productClick
                 ? <SubMenu>
-                    <p>Contact</p>
-                    <p>Newsletter</p>
-                    <p>Linkedin</p>
+                    <p>Products</p>
+                    <p>Price</p>
+                    <p>Help</p>
                 </SubMenu> 
                 : null}
                 <li onClick={subMenuClicked}>Company <span></span></li>
-                {subMenuClick.company
+                {companyClick
                 ? <SubMenu>
-                    <p>Contact</p>
-                    <p>Newsletter</p>
-                    <p>Linkedin</p>
+                    <p>Mision</p>
+                    <p>Blog</p>
+                    <p>Team</p>
                 </SubMenu> 
                 : null}
                 <li onClick={subMenuClicked}>Connect <span></span></li>
-                {subMenuClick.connect
+                {connectClick
                 ? <SubMenu>
                     <p>Contact</p>
                     <p>Newsletter</p>

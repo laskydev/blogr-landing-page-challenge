@@ -6,5 +6,5 @@
 body {
   font-family: 'Overpass', sans-serif;
   font-size: 16px;
-  /* overflow: hidden; */
+  overflow-x: hidden;
 }

@@ -14,10 +14,11 @@ const Header = styled.header`
     justify-content: space-between;
     padding: 1rem;
     align-items: center;
-    border: 1px solid red;
     img {
         height: 1rem;
         cursor: pointer;
+        transition: all 1s ease-out;
+
     }
 
     p {
@@ -44,7 +45,6 @@ const HeroWrapper = styled.div`
 const Hero = styled.div`
     width: 100vw;
     height: calc(70vh - (10vh + 1rem));
-    border: 1px solid red;
     color: ${colors.neutral.white};
     position: relative;
     h1 {
